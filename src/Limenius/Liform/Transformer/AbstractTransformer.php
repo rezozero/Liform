@@ -114,7 +114,10 @@ abstract class AbstractTransformer implements TransformerInterface
     protected function addLabel(FormInterface $form, array $schema)
     {
         $translationDomain = $form->getConfig()->getOption('translation_domain');
-        if ($label = $form->getConfig()->getOption('label')) {
+        $label = $form->getConfig()->getOption('label');
+        if ($label === false) {
+            $schema['title'] = '';
+        } elseif (!empty($label)) {
             $schema['title'] = $this->translator->trans($label, [], $translationDomain);
         } else {
             $schema['title'] = $this->translator->trans($form->getName(), [], $translationDomain);

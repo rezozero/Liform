@@ -35,5 +35,10 @@
   "scripts": {
     "test": "phpunit",
     "cs": "phpcs"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }
