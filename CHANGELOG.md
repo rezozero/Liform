@@ -1,3 +1,9 @@
+## [v0.18.1](https://github.com/rezozero/Liform/compare/v0.18.0...v0.18.1) (2022-06-27)
+
+### Bug Fixes
+
+* Use Yoda conditions when checking a variable against an expression to avoid an accidental assignment inside the condition statement ([fc0794d](https://github.com/rezozero/Liform/commit/fc0794d3eafe197de2ce2b3ade1b0600207d155b))
+
 ## [v0.18.0](https://github.com/rezozero/Liform/compare/v0.17.0...v0.18.0) (2022-06-27)
 
 ### Bug Fixes
