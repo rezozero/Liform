@@ -1,6 +1,6 @@
 {
-  "name": "limenius/liform",
-  "description": "Library to transform Symfony Forms into Json Schema",
+  "name": "rezozero/liform",
+  "description": "Library to transform Symfony Forms into Json Schema (Rezo Zero fork)",
   "type": "library",
   "license": "MIT",
   "authors": [
@@ -40,5 +40,8 @@
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
+  },
+  "replace": {
+    "limenius/liform": "*"
   }
 }
