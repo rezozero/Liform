@@ -115,7 +115,7 @@ abstract class AbstractTransformer implements TransformerInterface
     {
         $translationDomain = $form->getConfig()->getOption('translation_domain');
         $label = $form->getConfig()->getOption('label');
-        if ($label === false) {
+        if (false === $label) {
             $schema['title'] = '';
         } elseif (!empty($label)) {
             $schema['title'] = $this->translator->trans($label, [], $translationDomain);
