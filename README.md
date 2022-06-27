@@ -3,23 +3,23 @@ Liform
 
 Liform is a library for serializing Symfony Forms into [JSON schema](http://json-schema.org/). It can be used along with [liform-react](https://github.com/Limenius/liform-react) or [json-editor](https://github.com/jdorn/json-editor), or any other form generator based on json-schema.
 
-It is used by [LiformBundle](https://github.com/Limenius/LiformBundle) but can also be used as a stand-alone library.
+It is used by [LiformBundle](https://github.com/rezozero/LiformBundle) but can also be used as a stand-alone library.
 
 It is very annoying to maintain backend forms that match forms in a client technology, such as JavaScript. It is also annoying to maintain a documentation of such forms. And error prone.
 
 Liform generates a JSON schema representation, that serves as documentation and can be used to document, validate your data and, if you want, to generate forms using a generator.
 
 [![Build Status](https://travis-ci.org/Limenius/Liform.svg?branch=master)](https://travis-ci.org/Limenius/Liform)
-[![Latest Stable Version](https://poser.pugx.org/limenius/liform/v/stable)](https://packagist.org/packages/limenius/liform)
-[![Latest Unstable Version](https://poser.pugx.org/limenius/liform/v/unstable)](https://packagist.org/packages/limenius/liform)
-[![License](https://poser.pugx.org/limenius/liform/license)](https://packagist.org/packages/limenius/liform)
+[![Latest Stable Version](https://poser.pugx.org/rezozero/liform/v/stable)](https://packagist.org/packages/rezozero/liform)
+[![Latest Unstable Version](https://poser.pugx.org/rezozero/liform/v/unstable)](https://packagist.org/packages/rezozero/liform)
+[![License](https://poser.pugx.org/rezozero/liform/license)](https://packagist.org/packages/rezozero/liform)
 
 ## Installation
 
 Open a console, enter your project directory and execute the
 following command to download the latest stable version of this library:
 
-    $ composer require limenius/liform
+    $ composer require rezozero/liform
 
 This command requires you to have Composer installed globally, as explained
 in the *installation chapter* of the Composer documentation.
@@ -30,7 +30,7 @@ in the *installation chapter* of the Composer documentation.
 `symfony/form ^5.0` broke backwards compatibility on some abstract functions we use. If you need to function with
 earlier versions, you need to use Liform v0.15 or earlier:
 
-    $ composer require limenius/liform "^0.15"
+    $ composer require rezozero/liform "^0.15"
 
 ## Usage
 
@@ -45,7 +45,7 @@ $resolver = new Resolver();
 $resolver->setTransformer('text', Transformer\StringTransformer);
 $resolver->setTransformer('textarea', Transformer\StringTransformer, 'textarea');
 // more transformers you might need, for a complete list of what is used in Symfony
-// see https://github.com/Limenius/LiformBundle/blob/master/Resources/config/transformers.xml
+// see https://github.com/rezozero/LiformBundle/blob/master/Resources/config/transformers.xml
 $liform = new Liform($resolver);
 
 $form = $this->createForm(CarType::class, $car, ['csrf_protection' => false]);
