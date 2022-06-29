@@ -1,3 +1,9 @@
+## [v0.18.2](https://github.com/rezozero/Liform/compare/v0.18.1...v0.18.2) (2022-06-29)
+
+### Features
+
+* If a `placeholder` is present in form `attr`, translate it! ([d02bd08](https://github.com/rezozero/Liform/commit/d02bd0868c67404f39a313cf5f883c21361628f0))
+
 ## [v0.18.1](https://github.com/rezozero/Liform/compare/v0.18.0...v0.18.1) (2022-06-27)
 
 ### Bug Fixes
