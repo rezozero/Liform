@@ -135,6 +135,10 @@ abstract class AbstractTransformer implements TransformerInterface
     protected function addAttr(FormInterface $form, array $schema)
     {
         if ($attr = $form->getConfig()->getOption('attr')) {
+            if (!empty($attr['placeholder']) && is_string($attr['placeholder'])) {
+                $translationDomain = $form->getConfig()->getOption('translation_domain');
+                $attr['placeholder'] = $this->translator->trans($attr['placeholder'], [], $translationDomain);
+            }
             $schema['attr'] = $attr;
         }
 
