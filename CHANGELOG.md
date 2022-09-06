@@ -1,3 +1,9 @@
+## [v0.18.3](https://github.com/rezozero/Liform/compare/v0.18.2...v0.18.3) (2022-09-06)
+
+### Features
+
+* Added new `FileTransformer` to support FileType multiple option ([8920e7e](https://github.com/rezozero/Liform/commit/8920e7e0c4bc5f7cdfc08389ba071c44c327369f))
+
 ## [v0.18.2](https://github.com/rezozero/Liform/compare/v0.18.1...v0.18.2) (2022-06-29)
 
 ### Features
