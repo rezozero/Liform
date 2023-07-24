@@ -1,3 +1,7 @@
+## [v0.19.0](https://github.com/rezozero/Liform/compare/v0.18.3...v0.19.0) (2023-07-24)
+
+- Upgraded against base repository https://github.com/Limenius/Liform
+
 ## [v0.18.3](https://github.com/rezozero/Liform/compare/v0.18.2...v0.18.3) (2022-09-06)
 
 ### Features
