@@ -23,14 +23,14 @@ class Resolver implements ResolverInterface
     /**
      * @var TransformerInterface[]
      */
-    private $transformers = [];
+    private array $transformers = [];
 
     /**
      * @param string               $formType
      * @param TransformerInterface $transformer
      * @param string|null          $widget
      */
-    public function setTransformer($formType, TransformerInterface $transformer, $widget = null)
+    public function setTransformer($formType, TransformerInterface $transformer, ?string $widget = null)
     {
         $this->transformers[$formType] = [
             'transformer' => $transformer,

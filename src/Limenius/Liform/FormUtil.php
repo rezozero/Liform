@@ -33,12 +33,12 @@ class FormUtil
     }
 
     /**
-     * @param ResolvedFormTypeInterface $formType
-     * @param array                     $types
+     * @param ResolvedFormTypeInterface|null $formType
+     * @param array                          $types
      *
      * @return void
      */
-    public static function typeAncestryForType(ResolvedFormTypeInterface $formType = null, array &$types)
+    public static function typeAncestryForType(?ResolvedFormTypeInterface $formType, array &$types)
     {
         if (!($formType instanceof ResolvedFormTypeInterface)) {
             return;
@@ -73,9 +73,9 @@ class FormUtil
      * @param FormInterface $form
      * @param mixed         $type
      *
-     * @return boolean
+     * @return bool
      */
-    public static function isTypeInAncestry(FormInterface $form, $type)
+    public static function isTypeInAncestry(FormInterface $form, $type): bool
     {
         return in_array($type, self::typeAncestry($form));
     }

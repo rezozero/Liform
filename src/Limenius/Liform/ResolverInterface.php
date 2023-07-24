@@ -24,12 +24,12 @@ interface ResolverInterface
      * @param TransformerInterface $transformer
      * @param string|null          $widget
      */
-    public function setTransformer($formType, TransformerInterface $transformer, $widget = null);
+    public function setTransformer($formType, TransformerInterface $transformer, ?string $widget = null);
 
     /**
      * @param FormInterface $form
      *
-     * @return array
+     * @return array|TransformerInterface
      */
     public function resolve(FormInterface $form);
 }

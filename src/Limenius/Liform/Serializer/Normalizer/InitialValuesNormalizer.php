@@ -11,10 +11,10 @@
 
 namespace Limenius\Liform\Serializer\Normalizer;
 
-use Symfony\Component\Form\Form;
+use Limenius\Liform\FormUtil;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Limenius\Liform\FormUtil;
 
 /**
  * Normalize instances of FormView
@@ -26,29 +26,30 @@ class InitialValuesNormalizer implements NormalizerInterface
     /**
      * {@inheritdoc}
      */
-    public function normalize($form, $format = null, array $context = [])
+    public function normalize($object, $format = null, array $context = [])
     {
-        $formView = $form->createView();
+        $formView = $object->createView();
 
-        return $this->getValues($form, $formView);
+        return $this->getValues($object, $formView);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null): bool
     {
-        return $data instanceof Form;
+        return $data instanceof FormInterface;
     }
 
     /**
-     * Gets the values of the form
-     * @param Form     $form
-     * @param FormView $formView
+     * Gets the values of the form.
+     *
+     * @param FormInterface $form
+     * @param FormView      $formView
      *
      * @return mixed
      */
-    private function getValues(Form $form, FormView $formView)
+    private function getValues(FormInterface $form, FormView $formView)
     {
         if (!empty($formView->children)) {
             if (in_array('choice', FormUtil::typeAncestry($form)) &&
@@ -72,7 +73,7 @@ class InitialValuesNormalizer implements NormalizerInterface
 
             return (array) $data;
         } else {
-            // handle separatedly the case with checkboxes, so the result is
+            // handle separately the case with checkboxes, so the result is
             // true/false instead of 1/0
             if (isset($formView->vars['checked'])) {
                 return $formView->vars['checked'];
@@ -88,7 +89,7 @@ class InitialValuesNormalizer implements NormalizerInterface
      *
      * @return array
      */
-    private function normalizeMultipleExpandedChoice(FormView $formView)
+    private function normalizeMultipleExpandedChoice(FormView $formView): array
     {
         $data = array();
         foreach ($formView->children as $name => $child) {

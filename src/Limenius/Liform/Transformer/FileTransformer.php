@@ -21,7 +21,7 @@ class FileTransformer extends AbstractTransformer
     /**
      * {@inheritdoc}
      */
-    public function transform(FormInterface $form, array $extensions = [], $widget = null)
+    public function transform(FormInterface $form, array $extensions = [], ?string $widget = null): array
     {
         $schema = ['type' => 'string'];
         $schema = $this->addCommonSpecs($form, $schema, $extensions, $widget);
@@ -55,7 +55,7 @@ class FileTransformer extends AbstractTransformer
      *
      * @return array
      */
-    protected function addWidget(FormInterface $form, array $schema, $configWidget)
+    protected function addWidget(FormInterface $form, array $schema, $configWidget): array
     {
         $schema['widget'] = 'file';
 

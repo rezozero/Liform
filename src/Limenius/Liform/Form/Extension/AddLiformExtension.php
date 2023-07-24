@@ -25,9 +25,9 @@ class AddLiformExtension extends AbstractTypeExtension
     /**
      * Returns the name of the type being extended.
      *
-     * @return string
+     * @return class-string
      */
-    public function getExtendedType()
+    public function getExtendedType(): string
     {
         return FormType::class;
     }

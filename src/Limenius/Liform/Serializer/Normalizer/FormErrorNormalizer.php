@@ -15,6 +15,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface as TranslatorContract;
 
 /**
  * Normalizes invalid Form instances.
@@ -23,10 +24,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class FormErrorNormalizer implements NormalizerInterface
 {
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
+    private TranslatorInterface $translator;
 
     /**
      * @param TranslatorInterface $translator
@@ -42,7 +40,7 @@ class FormErrorNormalizer implements NormalizerInterface
     public function normalize($object, $format = null, array $context = [])
     {
         return [
-            'code' => isset($context['status_code']) ? $context['status_code'] : null,
+            'code' => $context['status_code'] ?? null,
             'message' => 'Validation Failed',
             'errors' => $this->convertFormToArray($object),
         ];
@@ -51,7 +49,7 @@ class FormErrorNormalizer implements NormalizerInterface
     /**
      * {@inheritdoc}
      */
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null): bool
     {
         return $data instanceof FormInterface && $data->isSubmitted() && !$data->isValid();
     }
@@ -63,7 +61,7 @@ class FormErrorNormalizer implements NormalizerInterface
      *
      * @return array
      */
-    private function convertFormToArray(FormInterface $data)
+    private function convertFormToArray(FormInterface $data): array
     {
         $form = $errors = [];
         foreach ($data->getErrors() as $error) {
@@ -93,10 +91,14 @@ class FormErrorNormalizer implements NormalizerInterface
      *
      * @return string
      */
-    private function getErrorMessage(FormError $error)
+    private function getErrorMessage(FormError $error): string
     {
         if (null !== $error->getMessagePluralization()) {
-            return $this->translator->transChoice($error->getMessageTemplate(), $error->getMessagePluralization(), $error->getMessageParameters(), 'validators');
+            if ($this->translator instanceof TranslatorContract) {
+                return $this->translator->trans($error->getMessageTemplate(), ['%count%' => $error->getMessagePluralization()] + $error->getMessageParameters(), 'validators');
+            } else {
+                return $this->translator->transChoice($error->getMessageTemplate(), $error->getMessagePluralization(), $error->getMessageParameters(), 'validators');
+            }
         }
 
         return $this->translator->trans($error->getMessageTemplate(), $error->getMessageParameters(), 'validators');

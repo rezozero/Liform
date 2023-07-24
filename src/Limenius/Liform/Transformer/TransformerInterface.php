@@ -25,5 +25,5 @@ interface TransformerInterface
      *
      * @return array
      */
-    public function transform(FormInterface $form, array $extensions = [], $widget = null);
+    public function transform(FormInterface $form, array $extensions = [], ?string $widget = null): array;
 }
