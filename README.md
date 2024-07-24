@@ -1,6 +1,8 @@
 Liform
 ======
 
+This fork also merges git@github.com:answear/Liform.git.
+
 Liform is a library for serializing Symfony Forms into [JSON schema](http://json-schema.org/). It can be used along with [liform-react](https://github.com/Limenius/liform-react) or [json-editor](https://github.com/jdorn/json-editor), or any other form generator based on json-schema.
 
 It is used by [LiformBundle](https://github.com/rezozero/LiformBundle) but can also be used as a stand-alone library.
@@ -54,7 +56,7 @@ $schema = json_encode($liform->transform($form));
 
 And `$schema` will contain a JSON Schema representation such as:
 
-```js
+```json
 {
    "title":null,
    "properties":{
@@ -354,6 +356,6 @@ This library is under the MIT license. See the complete license in the file:
 
     LICENSE.md
 
-## Acknoledgements
+## Acknowledgements
 
 The technique for transforming forms using resolvers and reducers is inspired on [Symfony Console Form](https://github.com/matthiasnoback/symfony-console-form)

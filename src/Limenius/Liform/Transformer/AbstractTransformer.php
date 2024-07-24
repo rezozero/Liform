@@ -61,10 +61,10 @@ abstract class AbstractTransformer implements TransformerInterface
     }
 
     /**
-     * @param FormInterface $form
-     * @param array         $schema
-     * @param array         $extensions
-     * @param string|null   $widget
+     * @param FormInterface        $form
+     * @param array                $schema
+     * @param ExtensionInterface[] $extensions
+     * @param string|null          $widget
      *
      * @return array
      */
