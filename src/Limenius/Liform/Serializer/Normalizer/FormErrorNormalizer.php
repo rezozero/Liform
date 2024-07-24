@@ -112,6 +112,8 @@ class FormErrorNormalizer implements NormalizerInterface
 
     public function getSupportedTypes(?string $format): array
     {
-        return [Form::class];
+        return [
+            Form::class => false
+        ];
     }
 }
