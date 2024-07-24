@@ -22,20 +22,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class ArrayTransformer extends AbstractTransformer
 {
-    /**
-     * @var ResolverInterface
-     */
-    protected $resolver;
-
-    /**
-     * @param TranslatorInterface           $translator
-     * @param FormTypeGuesserInterface|null $validatorGuesser
-     * @param ResolverInterface             $resolver
-     */
-    public function __construct(TranslatorInterface $translator, FormTypeGuesserInterface $validatorGuesser = null, ResolverInterface $resolver)
-    {
+    public function __construct(
+        TranslatorInterface $translator,
+        ?FormTypeGuesserInterface $validatorGuesser,
+        protected readonly ResolverInterface $resolver
+    ) {
         parent::__construct($translator, $validatorGuesser);
-        $this->resolver = $resolver;
     }
 
     /**
@@ -73,8 +65,6 @@ class ArrayTransformer extends AbstractTransformer
             'items' => $children[0],
         ];
 
-        $schema = $this->addCommonSpecs($form, $schema, $extensions, $widget);
-
-        return $schema;
+        return $this->addCommonSpecs($form, $schema, $extensions, $widget);
     }
 }

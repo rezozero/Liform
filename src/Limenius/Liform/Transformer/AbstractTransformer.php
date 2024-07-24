@@ -20,17 +20,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 abstract class AbstractTransformer implements TransformerInterface
 {
-    protected TranslatorInterface $translator;
-    protected ?FormTypeGuesserInterface $validatorGuesser = null;
-
-    /**
-     * @param TranslatorInterface           $translator
-     * @param FormTypeGuesserInterface|null $validatorGuesser
-     */
-    public function __construct(TranslatorInterface $translator, FormTypeGuesserInterface $validatorGuesser = null)
-    {
-        $this->translator = $translator;
-        $this->validatorGuesser = $validatorGuesser;
+    public function __construct(
+        protected readonly TranslatorInterface $translator,
+        protected readonly ?FormTypeGuesserInterface $validatorGuesser
+    ) {
     }
 
     /**
@@ -81,12 +74,6 @@ abstract class AbstractTransformer implements TransformerInterface
         return $schema;
     }
 
-    /**
-     * @param FormInterface $form
-     * @param array         $schema
-     *
-     * @return array
-     */
     protected function addDisabled(FormInterface $form, array $schema): array
     {
         if ($form->getConfig()->getOption('disabled')) {
@@ -96,12 +83,6 @@ abstract class AbstractTransformer implements TransformerInterface
         return $schema;
     }
 
-    /**
-     * @param FormInterface $form
-     * @param array         $schema
-     *
-     * @return array
-     */
     protected function addPattern(FormInterface $form, array $schema): array
     {
         if ($attr = $form->getConfig()->getOption('attr')) {
@@ -113,12 +94,6 @@ abstract class AbstractTransformer implements TransformerInterface
         return $schema;
     }
 
-    /**
-     * @param FormInterface $form
-     * @param array         $schema
-     *
-     * @return array
-     */
     protected function addLabel(FormInterface $form, array $schema): array
     {
         $translationDomain = $form->getConfig()->getOption('translation_domain');
@@ -134,12 +109,6 @@ abstract class AbstractTransformer implements TransformerInterface
         return $schema;
     }
 
-    /**
-     * @param FormInterface $form
-     * @param array         $schema
-     *
-     * @return array
-     */
     protected function addAttr(FormInterface $form, array $schema): array
     {
         if ($attr = $form->getConfig()->getOption('attr')) {
@@ -153,12 +122,6 @@ abstract class AbstractTransformer implements TransformerInterface
         return $schema;
     }
 
-    /**
-     * @param FormInterface $form
-     * @param array         $schema
-     *
-     * @return array
-     */
     protected function addDescription(FormInterface $form, array $schema): array
     {
         $formConfig = $form->getConfig();
@@ -175,14 +138,7 @@ abstract class AbstractTransformer implements TransformerInterface
         return $schema;
     }
 
-    /**
-     * @param FormInterface $form
-     * @param array         $schema
-     * @param mixed         $configWidget
-     *
-     * @return array
-     */
-    protected function addWidget(FormInterface $form, array $schema, $configWidget): array
+    protected function addWidget(FormInterface $form, array $schema, mixed $configWidget): array
     {
         if ($liform = $form->getConfig()->getOption('liform')) {
             if (isset($liform['widget']) && $widget = $liform['widget']) {

@@ -46,19 +46,10 @@ class ChoiceTransformer extends AbstractTransformer
             $schema = $this->transformSingle($form, $choices, $titles);
         }
 
-        $schema = $this->addCommonSpecs($form, $schema, $extensions, $widget);
-
-        return $schema;
+        return $this->addCommonSpecs($form, $schema, $extensions, $widget);
     }
 
-    /**
-     * @param FormInterface $form
-     * @param array         $choices
-     * @param array         $titles
-     *
-     * @return array
-     */
-    private function transformSingle(FormInterface $form, $choices, $titles)
+    private function transformSingle(FormInterface $form, array $choices, array $titles): array
     {
         $formView = $form->createView();
 
@@ -78,14 +69,7 @@ class ChoiceTransformer extends AbstractTransformer
         return $schema;
     }
 
-    /**
-     * @param FormInterface $form
-     * @param array         $choices
-     * @param array         $titles
-     *
-     * @return array
-     */
-    private function transformMultiple(FormInterface $form, $choices, $titles)
+    private function transformMultiple(FormInterface $form, array $choices, array $titles): array
     {
         $formView = $form->createView();
 

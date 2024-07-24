@@ -30,7 +30,7 @@ class Resolver implements ResolverInterface
      * @param TransformerInterface $transformer
      * @param string|null          $widget
      */
-    public function setTransformer($formType, TransformerInterface $transformer, ?string $widget = null)
+    public function setTransformer(string $formType, TransformerInterface $transformer, ?string $widget = null): void
     {
         $this->transformers[$formType] = [
             'transformer' => $transformer,
@@ -41,7 +41,7 @@ class Resolver implements ResolverInterface
     /**
      * {@inheritdoc}
      */
-    public function resolve(FormInterface $form)
+    public function resolve(FormInterface $form): array|TransformerInterface
     {
         $types = FormUtil::typeAncestry($form);
 

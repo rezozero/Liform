@@ -37,7 +37,7 @@ class Liform implements LiformInterface
     /**
      * {@inheritdoc}
      */
-    public function transform(FormInterface $form)
+    public function transform(FormInterface $form): array
     {
         $transformerData = $this->resolver->resolve($form);
 
@@ -47,7 +47,7 @@ class Liform implements LiformInterface
     /**
      * {@inheritdoc}
      */
-    public function addExtension(ExtensionInterface $extension)
+    public function addExtension(ExtensionInterface $extension): LiformInterface
     {
         $this->extensions[] = $extension;
 

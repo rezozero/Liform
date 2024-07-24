@@ -12,22 +12,19 @@
 namespace Limenius\Liform\Guesser;
 
 use Symfony\Component\Form\Extension\Validator\ValidatorTypeGuesser;
-use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Form\Guess\ValueGuess;
 use Symfony\Component\Form\Guess\Guess;
+use Symfony\Component\Form\Guess\ValueGuess;
+use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Type;
-use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * @author Nacho Martín <nacho@limenius.com>
  */
 class ValidatorGuesser extends ValidatorTypeGuesser
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function guessMinLength(string $class, string $property)
+    public function guessMinLength(string $class, string $property): ?Guess
     {
         return $this->guess($class, $property, function (Constraint $constraint) {
             return $this->guessMinLengthForConstraint($constraint);
@@ -41,7 +38,7 @@ class ValidatorGuesser extends ValidatorTypeGuesser
      *
      * @return ValueGuess|null The guess for the minimum length
      */
-    public function guessMinLengthForConstraint(Constraint $constraint)
+    public function guessMinLengthForConstraint(Constraint $constraint): ?ValueGuess
     {
         switch (get_class($constraint)) {
             case Length::class:

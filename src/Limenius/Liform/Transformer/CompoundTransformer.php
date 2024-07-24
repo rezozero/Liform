@@ -21,20 +21,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class CompoundTransformer extends AbstractTransformer
 {
-    /**
-     * @var ResolverInterface
-     */
-    protected $resolver;
-
-    /**
-     * @param TranslatorInterface           $translator
-     * @param FormTypeGuesserInterface|null $validatorGuesser
-     * @param ResolverInterface             $resolver
-     */
-    public function __construct(TranslatorInterface $translator, FormTypeGuesserInterface $validatorGuesser = null, ResolverInterface $resolver)
-    {
+    public function __construct(
+        TranslatorInterface $translator,
+        ?FormTypeGuesserInterface $validatorGuesser,
+        protected readonly ResolverInterface $resolver
+    ) {
         parent::__construct($translator, $validatorGuesser);
-        $this->resolver = $resolver;
     }
 
     /**

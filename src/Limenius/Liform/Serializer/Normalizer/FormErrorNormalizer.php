@@ -22,16 +22,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  *
  * @author Ener-Getick <egetick@gmail.com>
  */
-class FormErrorNormalizer implements NormalizerInterface
+final class FormErrorNormalizer implements NormalizerInterface
 {
-    private TranslatorInterface $translator;
-
-    /**
-     * @param TranslatorInterface $translator
-     */
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(private readonly TranslatorInterface $translator)
     {
-        $this->translator = $translator;
     }
 
     /**

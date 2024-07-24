@@ -14,6 +14,7 @@ namespace Limenius\Liform\Transformer;
 use Limenius\Liform\FormUtil;
 use Limenius\Liform\Guesser\ValidatorGuesser;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\Guess\ValueGuess;
 
 /**
  * @author Nacho Martín <nacho@limenius.com>
@@ -39,7 +40,7 @@ class StringTransformer extends AbstractTransformer
      *
      * @return array
      */
-    protected function addMaxLength(FormInterface $form, array $schema)
+    protected function addMaxLength(FormInterface $form, array $schema): array
     {
         if ($attr = $form->getConfig()->getOption('attr')) {
             if (isset($attr['maxlength'])) {
@@ -56,7 +57,7 @@ class StringTransformer extends AbstractTransformer
      *
      * @return array
      */
-    protected function addMinLength(FormInterface $form, array $schema)
+    protected function addMinLength(FormInterface $form, array $schema): array
     {
         if ($attr = $form->getConfig()->getOption('attr')) {
             if (isset($attr['minlength'])) {
@@ -81,10 +82,12 @@ class StringTransformer extends AbstractTransformer
         }
 
         $minLengthGuess = $this->validatorGuesser->guessMinLength($class, $form->getName());
-        $minLength = $minLengthGuess ? $minLengthGuess->getValue() : null;
 
-        if ($minLength) {
-            $schema['minLength'] = $minLength;
+        if ($minLengthGuess instanceof ValueGuess) {
+            $minLength = $minLengthGuess->getValue();
+            if ($minLength) {
+                $schema['minLength'] = $minLength;
+            }
         }
 
         return $schema;

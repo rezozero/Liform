@@ -24,7 +24,7 @@ class FormUtil
      *
      * @return array
      */
-    public static function typeAncestry(FormInterface $form)
+    public static function typeAncestry(FormInterface $form): array
     {
         $types = [];
         self::typeAncestryForType($form->getConfig()->getType(), $types);
@@ -38,7 +38,7 @@ class FormUtil
      *
      * @return void
      */
-    public static function typeAncestryForType(?ResolvedFormTypeInterface $formType, array &$types)
+    public static function typeAncestryForType(?ResolvedFormTypeInterface $formType, array &$types): void
     {
         if (!($formType instanceof ResolvedFormTypeInterface)) {
             return;
@@ -56,7 +56,7 @@ class FormUtil
      *
      * @return string|null the dataClass
      */
-    public static function findDataClass($formType)
+    public static function findDataClass(mixed $formType): ?string
     {
         if ($dataClass = $formType->getConfig()->getDataClass()) {
             return $dataClass;
@@ -75,7 +75,7 @@ class FormUtil
      *
      * @return bool
      */
-    public static function isTypeInAncestry(FormInterface $form, $type): bool
+    public static function isTypeInAncestry(FormInterface $form, mixed $type): bool
     {
         return in_array($type, self::typeAncestry($form));
     }
@@ -85,7 +85,7 @@ class FormUtil
      *
      * @return string
      */
-    public static function type(FormInterface $form)
+    public static function type(FormInterface $form): string
     {
         return $form->getConfig()->getType()->getBlockPrefix();
     }
@@ -93,9 +93,9 @@ class FormUtil
     /**
      * @param FormInterface $form
      *
-     * @return string
+     * @return string|null
      */
-    public static function label(FormInterface $form)
+    public static function label(FormInterface $form): ?string
     {
         return $form->getConfig()->getOption('label', $form->getName());
     }
@@ -103,9 +103,9 @@ class FormUtil
     /**
      * @param FormInterface $form
      *
-     * @return string
+     * @return bool
      */
-    public static function isCompound(FormInterface $form)
+    public static function isCompound(FormInterface $form): bool
     {
         return $form->getConfig()->getOption('compound');
     }

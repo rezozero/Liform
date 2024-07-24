@@ -36,7 +36,7 @@ class FileTransformer extends AbstractTransformer
      *
      * @return array
      */
-    protected function addMultiple(FormInterface $form, array $schema)
+    protected function addMultiple(FormInterface $form, array $schema): array
     {
         if ($multiple = $form->getConfig()->getOption('multiple')) {
             if (!isset($schema['attr'])) {

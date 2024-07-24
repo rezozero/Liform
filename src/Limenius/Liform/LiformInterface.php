@@ -24,12 +24,12 @@ interface LiformInterface
      *
      * @return array
      */
-    public function transform(FormInterface $form);
+    public function transform(FormInterface $form): array;
 
     /**
      * @param ExtensionInterface $extension
      *
      * @return LiformInterface
      */
-    public function addExtension(ExtensionInterface $extension);
+    public function addExtension(ExtensionInterface $extension): LiformInterface;
 }

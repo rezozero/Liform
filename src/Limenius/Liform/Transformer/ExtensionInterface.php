@@ -24,5 +24,5 @@ interface ExtensionInterface
      *
      * @return array
      */
-    public function apply(FormInterface $form, array $schema);
+    public function apply(FormInterface $form, array $schema): array;
 }
