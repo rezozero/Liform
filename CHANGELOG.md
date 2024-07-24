@@ -2,6 +2,12 @@
 
 All notable changes to Liform will be documented in this file.
 
+## [0.20.1](https://github.com/rezozero/Liform/compare/v0.20.0...v0.20.1) - 2024-07-24
+
+### Features
+
+- Added more type hints and return types. Allow php8.1. - ([182fe0f](https://github.com/rezozero/Liform/commit/182fe0faf3351dd2f6ab260feff88a8e3ee40f5e))
+
 ## [0.18.3](https://github.com/rezozero/Liform/compare/v0.18.2...v0.18.3) - 2022-09-06
 
 ### Features
